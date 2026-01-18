@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charles Onyegbado | GenAI Portfolio</title>
+    <title>Charles Onyegbado | Public Health & GenAI Specialist</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,8 +22,8 @@
             --accent-primary: #10b981;
             --accent-secondary: #059669;
             --gradient-main: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --gradient-bg: radial-gradient(circle at top right, #062817 0%, #050705 50%);
-            --glass: rgba(13, 17, 13, 0.7);
+            --gradient-bg: radial-gradient(circle at center, #062817 0%, #050705 100%);
+            --glass: rgba(13, 17, 13, 0.85);
             --border-glow: rgba(16, 185, 129, 0.2);
         }
 
@@ -31,6 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -43,573 +44,314 @@
 
         h1, h2, h3, h4 {
             font-family: 'Space Grotesk', sans-serif;
-            color: var(--text-primary);
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: color 0.3s ease;
         }
 
-        /* --- Navigation --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(9, 5, 19, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        /* --- Hero Section --- */
+        /* --- Custom Hero Layout (Cover Style) --- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             background: var(--gradient-bg);
             padding: 2rem;
             text-align: center;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 40%;
-            height: 40%;
-            background: var(--accent-primary);
-            filter: blur(150px);
-            opacity: 0.1;
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            z-index: 1;
-            animation: fadeIn 1s ease-out;
+        .cover-card {
+            max-width: 500px;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeIn 1s ease-out;
         }
 
         .hero-avatar {
-            width: 160px;
-            height: 160px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(217, 70, 239, 0.5);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
-            margin-bottom: 2rem;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            background: rgba(217, 70, 239, 0.1);
-            color: var(--accent-primary);
-            font-size: 0.875rem;
+            border: 3px solid var(--accent-primary);
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(217, 70, 239, 0.2);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .social-handles {
+            display: flex;
+            gap: 1.25rem;
             margin-bottom: 1.5rem;
-            font-weight: 700;
+            color: var(--accent-primary);
         }
 
-        .hero h1 span {
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .social-handle-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
         }
 
-        .hero p {
-            font-size: 1.25rem;
+        .social-handle-link:hover {
+            opacity: 0.7;
+        }
+
+        .hero-description {
+            font-size: 1rem;
             color: var(--text-secondary);
             margin-bottom: 2.5rem;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient-main);
-            color: white;
-            box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.5);
-        }
-
-        /* --- About Me --- */
-        .section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-header .line {
-            width: 60px;
-            height: 4px;
-            background: var(--gradient-main);
-            border-radius: 2px;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .profile-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-role {
-            color: var(--accent-primary);
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-tags {
+        /* --- Clickable Links (Linktree Style) --- */
+        .link-stack {
+            width: 100%;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .skill-tag {
-            background: rgba(139, 92, 246, 0.1);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #d8b4fe;
-            border: 1px solid rgba(139, 92, 246, 0.15);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
-        /* --- Course Details --- */
-        .course-modules {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .module-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .module-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(217, 70, 239, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
-        }
-
-        .module-number {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-secondary);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .module-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .module-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* --- Submissions --- */
-        .submissions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .submission-card {
-            background: rgba(21, 16, 36, 0.6);
+        .link-item {
+            width: 100%;
+            padding: 1.1rem;
+            background: var(--glass);
+            border: 1px solid var(--border-glow);
             border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .submission-card:hover {
-            background: rgba(46, 16, 101, 0.3);
-            border-color: rgba(217, 70, 239, 0.3);
-        }
-
-        .card-image {
-            height: 150px;
-            background: linear-gradient(45deg, #1e1b4b, #090513);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-secondary);
+            position: relative;
         }
 
-        .card-content {
-            padding: 1.5rem;
+        .link-item:hover {
+            transform: scale(1.02);
+            background: var(--accent-primary);
+            color: #fff;
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .card-content h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .link-icon-left {
+            position: absolute;
+            left: 1.25rem;
         }
 
-        .card-content p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+        /* --- Content Sections --- */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .card-link {
-            color: var(--accent-primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-weight: 700;
+            display: flex;
             align-items: center;
-            gap: 0.25rem;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::before, .section-title::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border-glow);
+        }
+
+        /* --- About Grid --- */
+        .about-content {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-glow);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Grid Layouts (Updated for clean list style) --- */
+        .grid-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .grid-item {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-glow);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .grid-icon {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            color: var(--accent-primary);
+        }
+
+        .grid-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .grid-text p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
 
         /* --- Footer --- */
         footer {
-            background: var(--bg-card);
             padding: 4rem 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(139, 92, 246, 0.1);
             text-align: center;
-        }
-
-        .footer-content h3 {
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-icon {
+            border-top: 1px solid var(--border-glow);
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            transition: color 0.3s;
-        }
-
-        .social-icon:hover {
-            color: var(--accent-primary);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none; /* Simple hiding for mobile for this demo */
-            }
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 600px) {
+            .grid-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">CO.</a>
-            <div class="nav-links">
-                <a href="#about">About Me</a>
-                <a href="#course">The Course</a>
-                <a href="#portfolio">Submissions</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
+    <!-- Hero / Cover Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="cover-card">
             <img src="https://raw.githubusercontent.com/charliebeato/graph-ai-portfolio/720e6267d0527956ba310c2452f95ffeb6dac76f/LinkedIn.png" alt="Charles Onyegbado" class="hero-avatar">
-            <div class="hero-tag">Portfolio 2026</div>
-            <h1>Generative AI for <br><span>Work & Research</span></h1>
-            <p>Exploring No-Code AI tools for responsible task automation and health intelligence.</p>
-            <a href="#portfolio" class="btn btn-primary">
-                View My Work
-                <i data-lucide="arrow-right"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="section">
-        <div class="section-header">
-            <h2>About Me</h2>
-            <div class="line"></div>
-        </div>
-
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="profile-name">Charles Onyegbado</div>
-                <div class="profile-role">Public Health Scientist (MBBS, MPH)</div>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Generating decision-ready population health intelligence in diverse data environments.
-                </p>
-                <div class="skill-tags">
-                    <span class="skill-tag">R</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">ArcGIS</span>
-                    <span class="skill-tag">Health Intelligence</span>
-                </div>
+            
+            <h1>Charles Onyegbado</h1>
+            
+            <!-- Social Handles directly below name -->
+            <div class="social-handles">
+                <a href="https://www.linkedin.com/in/charles-onyegbado-924b1767/" target="_blank" class="social-handle-link">
+                    <i data-lucide="linkedin" size="18"></i> Charles Onyegbado
+                </a>
             </div>
 
-            <div class="about-text">
-                <p>
-                    I’m a public health scientist with over a decade of experience leading and supporting evidence-based work that shapes health strategy, strengthens services, and tackles health inequalities. I currently provide population health intelligence and strategic analysis for local government in the UK..
-                </p>
-                <p>
-                    I’ve worked across contrasting health data contexts in both high- and lower-resource settings. That blend gives me a practical edge in preparing multi-year datasets, improving data quality, and translating imperfect routine data into credible insights that can inform strategy and investment
-                </p>
-                <p>
-                    This portfolio documents my journey through the "Generative AI for Work & Research" course, where I am applying cutting-edge AI tools to enhance research productivity and automate complex public health workflows.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About The Course Section -->
-    <section id="course" class="section">
-        <div class="section-header">
-            <h2>About The Course</h2>
-            <div class="line"></div>
-            <p style="color: var(--text-secondary); max-width: 600px; margin-top: 1rem;">
-                An 8-week live cohort course by The GRAPH Courses, focusing on No-Code AI Tools for Responsible Task Automation.
+            <p class="hero-description">
+                Public Health Scientist | GenAI + Health Intelligence. <br>
+                Bridging global health data and real-world impact.
             </p>
-        </div>
 
-        <div class="course-modules">
-            <!-- Module 1 -->
-            <div class="module-card">
-                <div class="module-number">Module 1</div>
-                <h3 class="module-title">Websites & Docs</h3>
-                <p class="module-desc">Generating Markdown/Latex responsibly, building research websites, and designing presentations with AI.</p>
-            </div>
-
-            <!-- Module 2 -->
-            <div class="module-card">
-                <div class="module-number">Module 2</div>
-                <h3 class="module-title">AI Data Analysis</h3>
-                <p class="module-desc">Using ChatGPT Code Interpreter, Julius, and Windsurf to process datasets and create automated reports.</p>
-            </div>
-
-            <!-- Module 3 -->
-            <div class="module-card">
-                <div class="module-number">Module 3</div>
-                <h3 class="module-title">Text Analysis</h3>
-                <p class="module-desc">Literature reviews with Elicit/LiteRev, text classification, and sentiment analysis for research.</p>
-            </div>
-
-            <!-- Module 4 -->
-            <div class="module-card">
-                <div class="module-number">Module 4</div>
-                <h3 class="module-title">Custom Chatbots</h3>
-                <p class="module-desc">Building RAG systems, custom GPTs, and interactive chatbots with Botpress.</p>
-            </div>
-
-            <!-- Module 5 -->
-            <div class="module-card">
-                <div class="module-number">Module 5</div>
-                <h3 class="module-title">Task Automation</h3>
-                <p class="module-desc">Designing AI agents for literature monitoring and orchestrating app-to-app workflows.</p>
-            </div>
-
-            <!-- Module 6 -->
-            <div class="module-card">
-                <div class="module-number">Module 6</div>
-                <h3 class="module-title">Communication</h3>
-                <p class="module-desc">AI-generated research summaries, video abstracts, and scientific visualization.</p>
-            </div>
-
-            <!-- Module 7 -->
-            <div class="module-card">
-                <div class="module-number">Module 7</div>
-                <h3 class="module-title">Capstone</h3>
-                <p class="module-desc">Final project showcase demonstrating responsible AI practice in a public health context.</p>
+            <!-- Clickable Links Stack -->
+            <div class="link-stack">
+                <a href="#about" class="link-item">
+                    <i data-lucide="user" class="link-icon-left" size="20"></i>
+                    Professional Profile
+                </a>
+                <a href="#course" class="link-item">
+                    <i data-lucide="book" class="link-icon-left" size="20"></i>
+                    GenAI Curriculum
+                </a>
+                <a href="#portfolio" class="link-item">
+                    <i data-lucide="briefcase" class="link-icon-left" size="20"></i>
+                    Project Submissions
+                </a>
+                <a href="mailto:contact@example.com" class="link-item">
+                    <i data-lucide="mail" class="link-icon-left" size="20"></i>
+                    Get In Touch
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Submissions / Portfolio Section -->
-    <section id="portfolio" class="section">
-        <div class="section-header">
-            <h2>Weekly Submissions</h2>
-            <div class="line"></div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">Background</h2>
+        <div class="about-content">
+            <p>
+                I’m a public health scientist with over a decade of experience leading and supporting evidence-based work that shapes health strategy, strengthens services, and tackles health inequalities. I currently provide population health intelligence and strategic analysis for local government in the UK.
+            </p>
+            <p>
+                I’ve worked across contrasting health data contexts in both high- and lower-resource settings. That blend gives me a practical edge in preparing multi-year datasets, improving data quality, and translating imperfect routine data into credible insights that can inform strategy and investment.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+                <span style="font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--accent-primary); padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600;">R / Python</span>
+                <span style="font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--accent-primary); padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600;">Power BI</span>
+                <span style="font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--accent-primary); padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600;">ArcGIS</span>
+                <span style="font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--accent-primary); padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600;">SQL</span>
+            </div>
         </div>
+    </section>
 
-        <div class="submissions-grid">
-            <!-- Submission 1 -->
-            <div class="submission-card">
-                <div class="card-image">
-                    <i data-lucide="file-code" size="32"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Week 1: Web Presence</h3>
-                    <p>Created a personal portfolio using LLM-assisted coding and Markdown.</p>
-                    <a href="#" class="card-link">View Submission <i data-lucide="external-link" size="14"></i></a>
+    <!-- Course Section -->
+    <section id="course" class="section">
+        <h2 class="section-title">GenAI Curriculum</h2>
+        <div class="grid-list">
+            <div class="grid-item">
+                <div class="grid-icon"><i data-lucide="layers"></i></div>
+                <div class="grid-text">
+                    <h3>Foundations & Tools</h3>
+                    <p>Large Language Models (LLMs), Markdown, and building simple research websites with no-code environments.</p>
                 </div>
             </div>
+            <div class="grid-item">
+                <div class="grid-icon"><i data-lucide="database"></i></div>
+                <div class="grid-text">
+                    <h3>Data Automation</h3>
+                    <p>Using AI assistants for rapid data cleaning, complex visualization, and statistical reporting.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div class="grid-icon"><i data-lucide="cpu"></i></div>
+                <div class="grid-text">
+                    <h3>Agents & Workflows</h3>
+                    <p>Designing cognitive agents and RAG systems to manage public health intelligence tasks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <!-- Submission 2 -->
-            <div class="submission-card">
-                <div class="card-image">
-                    <i data-lucide="bar-chart-2" size="32"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Week 2: Data Dashboard</h3>
-                    <p>Automated data analysis report generated using Julius AI and Python.</p>
-                    <a href="#" class="card-link">View Submission <i data-lucide="external-link" size="14"></i></a>
-                </div>
-            </div>
-
-            <!-- Submission 3 -->
-            <div class="submission-card">
-                <div class="card-image">
-                    <i data-lucide="search" size="32"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Week 3: Lit Review</h3>
-                    <p>Synthesized knowledge map of 50+ papers using Elicit and AI summarization.</p>
-                    <a href="#" class="card-link">View Submission <i data-lucide="external-link" size="14"></i></a>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="grid-list">
+            <div class="grid-item">
+                <div class="grid-icon"><i data-lucide="layout"></i></div>
+                <div class="grid-text">
+                    <h3>AI Portfolio Website</h3>
+                    <p>Modern responsive landing page for showcasing AI and public health achievements.</p>
                 </div>
             </div>
-
-            <!-- Submission 4 -->
-            <div class="submission-card">
-                <div class="card-image">
-                    <i data-lucide="message-square" size="32"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Week 4: Custom GPT</h3>
-                    <p>Developed a "Public Health Data Assistant" chatbot using Botpress.</p>
-                    <a href="#" class="card-link">View Submission <i data-lucide="external-link" size="14"></i></a>
-                </div>
-            </div>
-             <!-- Submission 5 -->
-             <div class="submission-card">
-                <div class="card-image">
-                    <i data-lucide="workflow" size="32"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Week 5: Automation</h3>
-                    <p>Built an automated email response and literature monitoring agent.</p>
-                    <a href="#" class="card-link">View Submission <i data-lucide="external-link" size="14"></i></a>
-                </div>
-            </div>
-             <!-- Submission 6 -->
-             <div class="submission-card">
-                <div class="card-image">
-                    <i data-lucide="video" size="32"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Week 6: Outreach</h3>
-                    <p>Generated video abstract and simplified summaries for diverse audiences.</p>
-                    <a href="#" class="card-link">View Submission <i data-lucide="external-link" size="14"></i></a>
+            <div class="grid-item">
+                <div class="grid-icon"><i data-lucide="activity"></i></div>
+                <div class="grid-text">
+                    <h3>Epidemiological Dashboard</h3>
+                    <p>Real-time surveillance monitoring using AI-driven visualization pipelines.</p>
                 </div>
             </div>
         </div>
@@ -617,48 +359,12 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <h3>Charles Onyegbado</h3>
-            <p style="color: var(--text-secondary);">Public Health Scientist | AI for Research</p>
-            
-            <div class="social-links">
-                <a href="#" class="social-icon" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                <a href="#" class="social-icon" aria-label="Github"><i data-lucide="github"></i></a>
-                <a href="#" class="social-icon" aria-label="Twitter"><i data-lucide="twitter"></i></a>
-            </div>
-            
-            <p style="margin-top: 2rem; font-size: 0.8rem; color: #64748b;">
-                &copy; 2026 Charles Onyegbado. All rights reserved.
-            </p>
-        </div>
+        <p>&copy; 2026 Charles Onyegbado. Crafted for the Future of Public Health.</p>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Initialize Icons
         lucide.createIcons();
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Simple Nav Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(9, 5, 19, 0.95)';
-                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.3)';
-            } else {
-                nav.style.background = 'rgba(9, 5, 19, 0.85)';
-                nav.style.boxShadow = 'none';
-            }
-        });
     </script>
 </body>
 </html>
