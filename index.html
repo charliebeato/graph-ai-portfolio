@@ -121,6 +121,19 @@
             max-width: 800px;
             z-index: 1;
             animation: fadeIn 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(217, 70, 239, 0.5);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            margin-bottom: 2rem;
         }
 
         .hero-tag {
@@ -409,6 +422,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <img src="https://raw.githubusercontent.com/charliebeato/graph-ai-portfolio/720e6267d0527956ba310c2452f95ffeb6dac76f/LinkedIn.png" alt="Charles Onyegbado" class="hero-avatar">
             <div class="hero-tag">Portfolio 2026</div>
             <h1>Generative AI for <br><span>Work & Research</span></h1>
             <p>Exploring No-Code AI tools for responsible task automation and health intelligence.</p>
