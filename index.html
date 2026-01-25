@@ -205,6 +205,13 @@
             display: flex;
             gap: 1.5rem;
             align-items: flex-start;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(16, 185, 129, 0.35);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
         }
 
         .grid-icon {
@@ -221,6 +228,41 @@
 
         .grid-text p {
             font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Project Link Button --- */
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 0.9rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 0.85rem;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid var(--border-glow);
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .project-link:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .project-note {
+            font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
@@ -257,7 +299,7 @@
             
             <!-- Social Handles directly below name -->
             <div class="social-handles">
-                <a href="https://www.linkedin.com/in/charlesonyegbado/" target="_blank" class="social-handle-link">
+                <a href="https://www.linkedin.com/in/charlesonyegbado/" target="_blank" class="social-handle-link" rel="noopener">
                     <i data-lucide="linkedin" size="18"></i> Charles Onyegbado
                 </a>
             </div>
@@ -347,6 +389,26 @@
                     <p>Modern responsive landing page for showcasing AI and public health achievements.</p>
                 </div>
             </div>
+
+            <!-- NEW: Workshop 2 Project Link -->
+            <div class="grid-item">
+                <div class="grid-icon"><i data-lucide="bar-chart-3"></i></div>
+                <div class="grid-text">
+                    <h3>Workshop 2: Automated Data Analysis</h3>
+                    <p>
+                        Analysed Gapminder data to explore relationships between two global indicators using AI tools,
+                        including 2020 world maps and a scatterplot (GDP per capita vs male life expectancy).
+                    </p>
+                    <div class="project-meta">
+                        <a class="project-link" href="https://charliebeato.github.io/graph-ai-portfolio/gdp_levmale.html" target="_blank" rel="noopener">
+                            <i data-lucide="external-link" size="16"></i>
+                            Open Report
+                        </a>
+                        <span class="project-note">Hosted on GitHub Pages</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid-item">
                 <div class="grid-icon"><i data-lucide="activity"></i></div>
                 <div class="grid-text">
