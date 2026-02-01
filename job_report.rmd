@@ -1,0 +1,166 @@
+---
+title: "Job Posting Data Report"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    css: styles/option_3.css
+  github_document:
+    toc: true
+    toc_depth: 2
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+required_packages <- c("readr", "dplyr", "ggplot2", "knitr", "scales")
+missing_packages <- required_packages[!sapply(required_packages, requireNamespace, quietly = TRUE)]
+
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages, repos = "https://cran.rstudio.com/")
+}
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(scales)
+```
+
+# Introduction
+
+This report provides a focused look at job postings data to explore how required experience relates to salary estimates and how salary varies by stated data language requirements. The report includes a brief data preview, minimal cleaning to standardize numeric fields and language categories, and two core visuals: a scatter plot of minimum years of experience versus median salary estimate and a box plot of median salary estimate by data language group.
+
+# Data
+The data were originally scraped from Glassdoor in June 2020; the scraping project and full dataset are available [here](https://github.com/picklesueat/Jobs-Titles-In-Data-Science)
+```{r load-data}
+raw_data <- read_csv("data/data_analyst_posting.csv", show_col_types = FALSE)
+```
+
+The dataset contains `r nrow(raw_data)` rows and `r ncol(raw_data)` columns.
+
+# Data Preview
+
+```{r preview-data}
+raw_data %>%
+  select(`Median Salary Estimate`, `Minimum Years Experience`, `Data Languages`) %>%
+  head(10) %>%
+  kable(caption = "Sample of key fields from job postings")
+```
+
+# Data Cleaning
+
+```{r clean-data}
+clean_data <- raw_data %>%
+  transmute(
+    median_salary_usd = readr::parse_number(as.character(`Median Salary Estimate`)),
+    min_years_experience = readr::parse_number(as.character(`Minimum Years Experience`)),
+    data_languages_raw = `Data Languages`
+  ) %>%
+  mutate(
+    data_languages = data_languages_raw %>%
+      trimws() %>%
+      tolower() %>%
+      gsub("[^a-z/]", "", .),
+    data_languages = case_when(
+      data_languages == "r" ~ "R",
+      data_languages == "python" ~ "Python",
+      data_languages %in% c("both", "python/r", "r/python") ~ "Both",
+      data_languages == "neither" ~ "Neither",
+      TRUE ~ NA_character_
+    ),
+    data_languages = factor(data_languages, levels = c("R", "Python", "Both", "Neither"))
+  ) %>%
+  select(-data_languages_raw) %>%
+  filter(
+    !is.na(median_salary_usd),
+    !is.na(min_years_experience),
+    !is.na(data_languages)
+  )
+```
+
+After cleaning, `r nrow(clean_data)` rows remain for analysis.
+
+# Figure 1: Minimum Years Experience vs Median Salary
+
+```{r scatter-plot}
+ggplot(clean_data, aes(x = min_years_experience, y = median_salary_usd)) +
+  geom_point(alpha = 0.6, color = "#2c7fb8") +
+  labs(
+    title = "Minimum Years Experience vs Median Salary Estimate",
+    x = "Minimum Years Experience",
+    y = "Median Salary Estimate (USD)"
+  ) +
+  theme_minimal()
+```
+
+# Figure 2: Median Salary by Data Language
+
+```{r box-plot}
+median_labels <- clean_data %>%
+  group_by(data_languages) %>%
+  summarise(median_salary_usd = median(median_salary_usd, na.rm = TRUE), .groups = "drop") %>%
+  mutate(label = scales::dollar(round(median_salary_usd, 0)))
+
+label_nudge <- 0.03 * max(clean_data$median_salary_usd, na.rm = TRUE)
+
+ggplot(clean_data, aes(x = data_languages, y = median_salary_usd, fill = data_languages)) +
+  geom_boxplot(alpha = 0.7, outlier.alpha = 0.4) +
+  geom_text(
+    data = median_labels,
+    aes(y = median_salary_usd, label = label),
+    nudge_y = label_nudge,
+    color = "#3a2f25",
+    size = 3.5
+  ) +
+  labs(
+    title = "Median Salary Estimate by Data Language",
+    x = "Data Languages",
+    y = "Median Salary Estimate (USD)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+# Summary Table
+
+```{r summary-table}
+clean_data %>%
+  group_by(data_languages) %>%
+  summarise(
+    postings = n(),
+    median_salary_usd = median(median_salary_usd, na.rm = TRUE),
+    mean_salary_usd = mean(median_salary_usd, na.rm = TRUE),
+    median_experience_years = median(min_years_experience, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(postings)) %>%
+  kable(
+    digits = 1,
+    caption = "Summary of salary and experience by data language"
+  )
+```
+
+# Interpretation and Reflection
+
+The scatter plot suggests a generally weak relationship between minimum years of experience and median salary estimates, with wide variability in salary at most experience levels. This indicates that factors beyond experience alone likely play a substantial role in salary ranges within the postings. The box plot shows broadly similar median salaries across data language categories, with overlapping distributions, suggesting that stated language requirements are not strongly differentiating median salary in this sample.
+
+A key limitation is that both experience and salary are drawn from job postings, which can be noisy and inconsistently reported, and the language categories are coarse. The data also reflect a specific snapshot (June 2020) and may not generalize to current market conditions. Future analysis could incorporate additional predictors (e.g., location, company size, industry) and explore multivariate models to better explain salary variation.
+
+I find this very interesting. I think it would have been more nosier or skewed if I dumped the dataset on an LLM to analyse. The parts on cleaning and extracting "themes" (datalanguage and minimum years of experience)was very key and it is something I will use extensively in my work
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
