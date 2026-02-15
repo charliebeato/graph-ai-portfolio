@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2026/02/08/17/20260208173806-T64MKPXL.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2026/02/08/17/20260208173806-T64MKPXL.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charles Onyegbado | Public Health & GenAI Specialist</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -268,6 +268,21 @@
             color: var(--text-secondary);
         }
 
+        /* --- Contact Form Embed --- */
+        .form-embed {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            overflow: hidden; /* keeps iframe corners clean */
+        }
+
+        .form-embed iframe {
+            width: 100%;
+            height: 980px; /* a bit taller for comfortable scrolling */
+            border: 0;
+            display: block;
+        }
+
         /* --- Footer --- */
         footer {
             padding: 4rem 2rem;
@@ -287,6 +302,9 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+            .form-embed iframe {
+                height: 1050px;
+            }
         }
     </style>
 </head>
@@ -296,9 +314,9 @@
     <section class="hero">
         <div class="cover-card">
             <img src="https://raw.githubusercontent.com/charliebeato/graph-ai-portfolio/720e6267d0527956ba310c2452f95ffeb6dac76f/LinkedIn.png" alt="Charles Onyegbado" class="hero-avatar">
-            
+
             <h1>Charles Onyegbado</h1>
-            
+
             <!-- Social Handles directly below name -->
             <div class="social-handles">
                 <a href="https://www.linkedin.com/in/charlesonyegbado/" target="_blank" class="social-handle-link" rel="noopener">
@@ -324,6 +342,10 @@
                 <a href="#portfolio" class="link-item">
                     <i data-lucide="briefcase" class="link-icon-left" size="20"></i>
                     Project Submissions
+                </a>
+                <a href="#consultation" class="link-item">
+                    <i data-lucide="calendar" class="link-icon-left" size="20"></i>
+                    Contact for Consultation
                 </a>
                 <a href="mailto:conyegbado@palcareng.org" class="link-item">
                     <i data-lucide="mail" class="link-icon-left" size="20"></i>
@@ -430,7 +452,7 @@
                 </div>
             </div>
 
-            <!-- NEW: Nigeria Life Expectancy Project Link -->
+            <!-- Nigeria Life Expectancy Project Link -->
             <div class="grid-item">
                 <div class="grid-icon"><i data-lucide="heart-pulse"></i></div>
                 <div class="grid-text">
@@ -456,6 +478,24 @@
                     <p>Real-time surveillance monitoring using AI-driven visualization pipelines.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- NEW: Contact for Consultation Section -->
+    <section id="consultation" class="section">
+        <h2 class="section-title">Contact for Consultation</h2>
+
+        <div class="form-embed">
+            <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfBMiCoSTFfepzg8Une1tmyFrzPy15k84UQFZNuZ2quUfUkbQ/viewform?embedded=true"
+                width="640"
+                height="780"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                title="Consultation Form">
+                Loading…
+            </iframe>
         </div>
     </section>
 
