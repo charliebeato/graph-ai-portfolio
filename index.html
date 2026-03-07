@@ -33,7 +33,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
+            scroll-behaviour: smooth;
+        }
+
+        html {
+            scroll-behaviour: smooth;
         }
 
         body {
@@ -172,7 +176,8 @@
             gap: 0.75rem;
         }
 
-        .section-title::before, .section-title::after {
+        .section-title::before,
+        .section-title::after {
             content: '';
             height: 1px;
             flex-grow: 1;
@@ -192,7 +197,7 @@
             color: var(--text-secondary);
         }
 
-        /* --- Grid Layouts (Updated for clean list style) --- */
+        /* --- Grid Layouts --- */
         .grid-list {
             display: flex;
             flex-direction: column;
@@ -221,6 +226,11 @@
             padding: 1rem;
             border-radius: 12px;
             color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .grid-text {
+            width: 100%;
         }
 
         .grid-text h3 {
@@ -273,12 +283,12 @@
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
             border-radius: 20px;
-            overflow: hidden; /* keeps iframe corners clean */
+            overflow: hidden;
         }
 
         .form-embed iframe {
             width: 100%;
-            height: 980px; /* a bit taller for comfortable scrolling */
+            height: 980px;
             border: 0;
             display: block;
         }
@@ -286,7 +296,7 @@
         /* --- Footer --- */
         footer {
             padding: 4rem 2rem;
-            text-align: center;
+            text-align: centre;
             border-top: 1px solid var(--border-glow);
             font-size: 0.85rem;
             color: var(--text-secondary);
@@ -302,6 +312,7 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
             .form-embed iframe {
                 height: 1050px;
             }
@@ -360,10 +371,10 @@
         <h2 class="section-title">Background</h2>
         <div class="about-content">
             <p>
-               I’m a public health scientist with over a decade of experience leading and supporting evidence-based work that shapes health strategy, strengthens services, and tackles health inequalities. I currently provide population health intelligence and strategic analysis for local government in the UK, alongside advisory and analytical support for organisations in Africa and other settings.
+                I’m a public health scientist with over a decade of experience leading and supporting evidence-based work that shapes health strategy, strengthens services, and tackles health inequalities. I currently provide population health intelligence and strategic analysis for local government in the UK, alongside advisory and analytical support for organisations in Africa and other settings.
             </p>
             <p>
-                With experience spanning clinical medicine, public health analytics, and programme management, I’ve worked across highly governed health data environments and routine programme datasets of varying quality. I build reliable multi-year datasets, surface and document data limitations, and strengthen how evidence feeds into reporting, performance monitoring, and population health modelling
+                With experience spanning clinical medicine, public health analytics, and programme management, I’ve worked across highly governed health data environments and routine programme datasets of varying quality. I build reliable multi-year datasets, surface and document data limitations, and strengthen how evidence feeds into reporting, performance monitoring, and population health modelling.
             </p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
                 <span style="font-size: 0.75rem; background: rgba(16, 185, 129, 0.1); color: var(--accent-primary); padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600;">R / Python</span>
@@ -381,7 +392,7 @@
             <div class="grid-item">
                 <div class="grid-icon"><i data-lucide="layers"></i></div>
                 <div class="grid-text">
-                    <h3>Foundations & Tools</h3>
+                    <h3>Foundations &amp; Tools</h3>
                     <p>Large Language Models (LLMs), Markdown, and building simple research websites with no-code environments.</p>
                 </div>
             </div>
@@ -389,13 +400,13 @@
                 <div class="grid-icon"><i data-lucide="database"></i></div>
                 <div class="grid-text">
                     <h3>Data Automation</h3>
-                    <p>Using AI assistants for rapid data cleaning, complex visualization, and statistical reporting.</p>
+                    <p>Using AI assistants for rapid data cleaning, complex visualisation, and statistical reporting.</p>
                 </div>
             </div>
             <div class="grid-item">
                 <div class="grid-icon"><i data-lucide="cpu"></i></div>
                 <div class="grid-text">
-                    <h3>Agents & Workflows</h3>
+                    <h3>Agents &amp; Workflows</h3>
                     <p>Designing cognitive agents and RAG systems to manage public health intelligence tasks.</p>
                 </div>
             </div>
@@ -471,17 +482,35 @@
                 </div>
             </div>
 
+            <!-- Nigeria Tobacco Burden Project Link -->
+            <div class="grid-item">
+                <div class="grid-icon"><i data-lucide="badge-percent"></i></div>
+                <div class="grid-text">
+                    <h3>Nigeria’s Tobacco Burden</h3>
+                    <p>
+                        Final project dashboard examining smoking prevalence and household tobacco expenditure in Nigeria. I used ChatGPT to clarify the problem and align deliverables to the grading rubric, then used Cursor with the Codex extension to speed up the R analysis by importing World Bank prevalence series, preparing the NLSS expenditure data, creating a tobacco expenditure component, and testing multiple country-comparison views. The dashboard was built in R Markdown with highcharter for interactive visuals, with explicit assumptions, limitations, and next steps. Claude helped refine the narrative for non-technical audiences without changing the underlying numbers, and Canva was used for consistent branding and the presentation cover.
+                    </p>
+                    <div class="project-meta">
+                        <a class="project-link" href="https://charliebeato.github.io/graph-ai-portfolio/nigeria-tobacco-dashboard.html" target="_blank" rel="noopener">
+                            <i data-lucide="external-link" size="16"></i>
+                            Open Report
+                        </a>
+                        <span class="project-note">Hosted on GitHub Pages</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid-item">
                 <div class="grid-icon"><i data-lucide="activity"></i></div>
                 <div class="grid-text">
                     <h3>Epidemiological Dashboard</h3>
-                    <p>Real-time surveillance monitoring using AI-driven visualization pipelines.</p>
+                    <p>Real-time surveillance monitoring using AI-driven visualisation pipelines.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NEW: Contact for Consultation Section -->
+    <!-- Contact for Consultation Section -->
     <section id="consultation" class="section">
         <h2 class="section-title">Contact for Consultation</h2>
 
