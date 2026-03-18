@@ -1107,8 +1107,14 @@
                             </a>
                         </div>
                     </div>
-                    <div style="background: var(--navy-600); border-radius: 8px; height: 220px; display:flex; align-items:center; justify-content:center; border: 1px solid var(--border);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+                    <div style="border-radius: 8px; height: 220px; overflow: hidden; border: 1px solid var(--border); position: relative;">
+                        <iframe
+                            src="https://charliebeato.github.io/graph-ai-portfolio/nigeria-tobacco-dashboard.html"
+                            style="width: 100%; height: 100%; border: none; transform-origin: top left; pointer-events: none;"
+                            loading="lazy"
+                            title="Nigeria Tobacco Dashboard Preview">
+                        </iframe>
+                        <div style="position:absolute; inset:0; background: linear-gradient(to bottom, transparent 60%, var(--navy-700) 100%);"></div>
                     </div>
                 </div>
 
@@ -1315,7 +1321,7 @@
                     <div class="contact-detail-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
-                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21424e4f5844464340454e6151404d424053444f460f4e5346">[email&#160;protected]</a>
+                    <a href="/cdn-cgi/l/email-protection#0b686465726e6c696a6f644b7b6a67686a796e656c2564796c" style="color: var(--slate-300); text-decoration:none;"><span class="__cf_email__" data-cfemail="bbd8d4d5c2dedcd9dadfd4fbcbdad7d8dac9ded5dc95d4c9dc">[email&#160;protected]</span></a>
                 </div>
 
                 <div class="contact-detail">
@@ -1378,14 +1384,45 @@
             <a href="https://www.linkedin.com/in/charlesonyegbado/" target="_blank" rel="noopener" title="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
-            <a href="/cdn-cgi/l/email-protection#eb888485928e8c898a8f84ab9b8a87888a998e858cc584998c" title="Email">
+            <a href="mailto:conyegbado@palcareng.org" title="Email">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </a>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // ─── STAR RATING ───
+    <script>
+        // Google Form endpoints
+        const CONTACT_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScjREYflUAJRxCmKsnDPUhAIVHCrjD0rSvnTnT7Mal4akdPOg/formResponse';
+        const RATING_FORM_URL  = 'https://docs.google.com/forms/d/e/1FAIpQLScUMBJSK4QCN5cwbOi_Mc15vlJFN1T4N-vRZhzDEZS_wuhaIw/formResponse';
+
+        const CONTACT_FIELDS = {
+            name:    'entry.317564163',
+            email:   'entry.1137238840',
+            type:    'entry.1184658502',
+            message: 'entry.1401023429'
+        };
+
+        const RATING_FIELDS = {
+            name:    'entry.39115103',
+            org:     'entry.1624373682',
+            context: 'entry.1009642168',
+            stars:   'entry.2091454641',
+            message: 'entry.920163043'
+        };
+
+        async function postToGoogle(formUrl, fields) {
+            const body = new URLSearchParams(fields).toString();
+            try {
+                await fetch(formUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body
+                });
+            } catch(e) {}
+        }
+
+        // Star rating interaction
         const stars = document.querySelectorAll('.star-btn');
         let selectedRating = 0;
 
@@ -1403,29 +1440,59 @@
             });
         });
 
-        function submitRating() {
+        async function submitRating() {
             const name = document.getElementById('reviewName').value.trim();
+            const org  = document.getElementById('reviewOrg').value.trim();
+            const ctx  = document.getElementById('reviewContext').value;
             const text = document.getElementById('reviewText').value.trim();
+
             if (!name || !text || selectedRating === 0) {
                 alert('Please fill in your name, a message, and select a star rating.');
                 return;
             }
-            // In production: POST to your backend or Google Forms here
+
+            await postToGoogle(RATING_FORM_URL, {
+                [RATING_FIELDS.name]:    name,
+                [RATING_FIELDS.org]:     org,
+                [RATING_FIELDS.context]: ctx,
+                [RATING_FIELDS.stars]:   selectedRating,
+                [RATING_FIELDS.message]: text
+            });
+
             document.getElementById('ratingSuccess').style.display = 'block';
-            document.getElementById('reviewName').value = '';
-            document.getElementById('reviewOrg').value = '';
-            document.getElementById('reviewText').value = '';
+            document.getElementById('reviewName').value   = '';
+            document.getElementById('reviewOrg').value    = '';
+            document.getElementById('reviewText').value   = '';
             document.getElementById('reviewContext').value = '';
             stars.forEach(s => s.classList.remove('active'));
             selectedRating = 0;
         }
 
-        function submitContact() {
-            const name = document.getElementById('contactName').value.trim();
+        async function submitContact() {
+            const name  = document.getElementById('contactName').value.trim();
             const email = document.getElementById('contactEmail').value.trim();
-            const msg = document.getElementById('contactMessage').value.trim();
+            const type  = document.getElementById('contactType').value;
+            const msg   = document.getElementById('contactMessage').value.trim();
+
             if (!name || !email || !msg) {
-                alert('Please fill in all fields.');
+                alert('Please fill in your name, email, and message.');
                 return;
             }
-            // In production: POST to your backend or mailto: li
+
+            await postToGoogle(CONTACT_FORM_URL, {
+                [CONTACT_FIELDS.name]:    name,
+                [CONTACT_FIELDS.email]:   email,
+                [CONTACT_FIELDS.type]:    type,
+                [CONTACT_FIELDS.message]: msg
+            });
+
+            document.getElementById('contactSuccess').style.display = 'block';
+            document.getElementById('contactName').value    = '';
+            document.getElementById('contactEmail').value   = '';
+            document.getElementById('contactType').value    = '';
+            document.getElementById('contactMessage').value = '';
+        }
+    </script>
+
+</body>
+</html>
