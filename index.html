@@ -48,7 +48,6 @@
             overflow-x: hidden;
         }
 
-        /* ─── NOISE TEXTURE OVERLAY ─── */
         body::before {
             content: '';
             position: fixed;
@@ -59,7 +58,6 @@
             opacity: 0.5;
         }
 
-        /* ─── NAVIGATION ─── */
         nav {
             position: fixed;
             top: 0;
@@ -120,7 +118,6 @@
             color: var(--navy-900) !important;
         }
 
-        /* ─── HERO ─── */
         .hero {
             min-height: 100vh;
             display: grid;
@@ -254,7 +251,6 @@
             transform: translateY(-1px);
         }
 
-        /* ─── HERO IMAGE SIDE ─── */
         .hero-visual {
             position: relative;
             z-index: 1;
@@ -335,7 +331,6 @@
             border-radius: 100px;
         }
 
-        /* ─── SECTION SHARED ─── */
         .section {
             padding: 7rem 5rem;
             max-width: 1200px;
@@ -375,7 +370,6 @@
             margin-bottom: 4rem;
         }
 
-        /* ─── ABOUT ─── */
         .about-grid {
             display: grid;
             grid-template-columns: 1.4fr 1fr;
@@ -435,7 +429,6 @@
             border-radius: 4px;
         }
 
-        /* ─── PROJECTS ─── */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -550,7 +543,6 @@
             height: 14px;
         }
 
-        /* ─── BLOG ─── */
         .blog-list {
             display: flex;
             flex-direction: column;
@@ -606,7 +598,6 @@
             text-align: center;
         }
 
-        /* ─── TESTIMONIALS ─── */
         .testimonials-bg {
             background: var(--navy-800);
             border-top: 1px solid var(--border);
@@ -688,7 +679,6 @@
             letter-spacing: 2px;
         }
 
-        /* Rating Form */
         .rating-form-wrap {
             margin-top: 4rem;
             background: var(--navy-700);
@@ -780,7 +770,6 @@
             min-height: 100px;
         }
 
-        /* ─── CONTACT ─── */
         .contact-wrap {
             display: grid;
             grid-template-columns: 1fr 1.4fr;
@@ -831,7 +820,6 @@
             padding: 2.5rem;
         }
 
-        /* ─── FOOTER ─── */
         footer {
             background: var(--navy-800);
             border-top: 1px solid var(--border);
@@ -879,7 +867,6 @@
             color: var(--gold);
         }
 
-        /* ─── ANIMATIONS ─── */
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(32px); }
             to { opacity: 1; transform: translateY(0); }
@@ -890,7 +877,6 @@
             to { opacity: 1; }
         }
 
-        /* ─── RESPONSIVE ─── */
         @media (max-width: 900px) {
             nav { padding: 1rem 1.5rem; }
             .nav-links { display: none; }
@@ -910,7 +896,6 @@
             .form-row { grid-template-columns: 1fr; }
         }
 
-        /* Submit button */
         .btn-submit {
             display: inline-flex;
             align-items: center;
@@ -948,7 +933,6 @@
 </head>
 <body>
 
-    <!-- ─── NAV ─── -->
     <nav>
         <div class="nav-logo">Charles <span>Onyegbado</span></div>
         <ul class="nav-links">
@@ -960,7 +944,6 @@
         </ul>
     </nav>
 
-    <!-- ─── HERO ─── -->
     <section class="hero">
         <div class="hero-bg-grid"></div>
         <div class="hero-bg-glow"></div>
@@ -1009,7 +992,6 @@
         </div>
     </section>
 
-    <!-- ─── ABOUT ─── -->
     <section id="about" class="section">
         <span class="section-label">Background</span>
         <h2 class="section-heading">A scientist who builds with data — and now with AI</h2>
@@ -1078,15 +1060,13 @@
         </div>
     </section>
 
-    <!-- ─── PROJECTS ─── -->
     <section id="projects" style="background: var(--navy-800); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
         <div class="section">
             <span class="section-label">Portfolio</span>
             <h2 class="section-heading">Selected work</h2>
-            <p class="section-subheading">A mix of data analysis, AI-augmented pipelines, and interactive dashboards — all grounded in public health problems.</p>
+            <p class="section-subheading">A mix of data analysis, AI-augmented pipelines, and interactive dashboards — all grounded in public health and data storytelling problems.</p>
 
             <div class="projects-grid">
-                <!-- Featured -->
                 <div class="project-card featured">
                     <div>
                         <span class="project-number">01 · Featured</span>
@@ -1118,9 +1098,27 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="project-card">
                     <span class="project-number">02</span>
+                    <h3>Norwegian Salmonid Mortality & Losses Analysis</h3>
+                    <p>Analysed salmonid mortality data from the Norwegian Veterinary Institute via TidyTuesday, focusing on monthly mortality, wider loss categories, and regional variation from 2020 onward. The project explores how mortality changes over time, which regions perform best, and whether non-death losses are substantial enough to matter for fish welfare and production.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">R</span>
+                        <span class="tool-tag">TidyTuesday</span>
+                        <span class="tool-tag">Fish Health</span>
+                        <span class="tool-tag">Time Series</span>
+                        <span class="tool-tag">Regional Analysis</span>
+                    </div>
+                    <div class="project-footer">
+                        <a class="project-link-btn" href="https://charliebeato.github.io/graph-ai-portfolio/salmonid_mortality_report_final.html" target="_blank" rel="noopener">
+                            Open Report
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-number">03</span>
                     <h3>Nigeria Life Expectancy Analysis</h3>
                     <p>Built a dashboard in R using the UN World Population Prospects 2024 dataset, with LLM support via Cursor, summarising life expectancy trends and patterns across Nigerian states.</p>
                     <div class="project-tools">
@@ -1136,9 +1134,8 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="project-card">
-                    <span class="project-number">03</span>
+                    <span class="project-number">04</span>
                     <h3>Global Health Indicators Dashboard</h3>
                     <p>Analysed Gapminder data exploring relationships between GDP per capita and male life expectancy, including 2020 world maps and a comparative scatterplot.</p>
                     <div class="project-tools">
@@ -1154,9 +1151,8 @@
                     </div>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="project-card">
-                    <span class="project-number">04</span>
+                    <span class="project-number">05</span>
                     <h3>Job Market Data Analysis</h3>
                     <p>Used LLMs in Google Sheets to extract structured information from job postings, then analysed relationships between experience requirements, programming languages, and salaries.</p>
                     <div class="project-tools">
@@ -1175,13 +1171,17 @@
         </div>
     </section>
 
-    <!-- ─── WRITING / BLOG ─── -->
     <section id="writing" class="section">
         <span class="section-label">Writing</span>
         <h2 class="section-heading">Thinking out loud</h2>
         <p class="section-subheading">Notes on public health, AI in practice, and what I'm learning along the way.</p>
 
         <div class="blog-list">
+            <div class="blog-item" style="cursor:default;">
+                <span class="blog-date">Mar 2026</span>
+                <span class="blog-title">What fish mortality data can reveal about welfare and production risk</span>
+                <span class="blog-tag">Data Analysis</span>
+            </div>
             <div class="blog-item" style="cursor:default;">
                 <span class="blog-date">Mar 2026</span>
                 <span class="blog-title">How I used Claude to cut a 3-day data cleaning task to 3 hours</span>
@@ -1211,7 +1211,6 @@
         </div>
     </section>
 
-    <!-- ─── TESTIMONIALS ─── -->
     <div class="testimonials-bg" id="testimonials">
         <div class="section">
             <span class="section-label">Testimonials</span>
@@ -1257,7 +1256,6 @@
                 </div>
             </div>
 
-            <!-- Rating / Feedback Form -->
             <div class="rating-form-wrap">
                 <h3>Leave a rating or feedback</h3>
                 <p>Worked with me? I'd genuinely appreciate hearing from you.</p>
@@ -1306,7 +1304,6 @@
         </div>
     </div>
 
-    <!-- ─── CONTACT ─── -->
     <section id="contact" class="section">
         <span class="section-label">Contact</span>
         <h2 class="section-heading">Let's work together</h2>
@@ -1321,7 +1318,8 @@
                     <div class="contact-detail-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
-                    <a href="/cdn-cgi/l/email-protection#0b686465726e6c696a6f644b7b6a67686a796e656c2564796c" style="color: var(--slate-300); text-decoration:none;"><span class="__cf_email__" data-cfemail="bbd8d4d5c2dedcd9dadfd4fbcbdad7d8dac9ded5dc95d4c9dc">[email&#160;protected]</span></a>
+                    <a href="mailto:conyegbado@palcareng.org" style="color: var(--slate-300); text-decoration:none;">conyegbado@palcareng.org
+                    </a>
                 </div>
 
                 <div class="contact-detail">
@@ -1376,7 +1374,6 @@
         </div>
     </section>
 
-    <!-- ─── FOOTER ─── -->
     <footer>
         <div class="footer-logo">Charles <span>Onyegbado</span></div>
         <div class="footer-copy">© 2026 · Public Health & GenAI · Edinburgh, UK</div>
@@ -1391,7 +1388,6 @@
     </footer>
 
     <script>
-        // Google Form endpoints
         const CONTACT_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScjREYflUAJRxCmKsnDPUhAIVHCrjD0rSvnTnT7Mal4akdPOg/formResponse';
         const RATING_FORM_URL  = 'https://docs.google.com/forms/d/e/1FAIpQLScUMBJSK4QCN5cwbOi_Mc15vlJFN1T4N-vRZhzDEZS_wuhaIw/formResponse';
 
@@ -1422,7 +1418,6 @@
             } catch(e) {}
         }
 
-        // Star rating interaction
         const stars = document.querySelectorAll('.star-btn');
         let selectedRating = 0;
 
