@@ -448,7 +448,9 @@
         .project-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--gold), var(--teal));
             transform: scaleX(0);
@@ -800,6 +802,18 @@
             color: var(--slate-300);
         }
 
+        .contact-detail a,
+        .contact-detail span a {
+            color: var(--slate-300);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-detail a:hover,
+        .contact-detail span a:hover {
+            color: var(--gold-light);
+        }
+
         .contact-detail-icon {
             width: 36px;
             height: 36px;
@@ -835,7 +849,9 @@
             color: var(--white);
         }
 
-        .footer-logo span { color: var(--gold); }
+        .footer-logo span {
+            color: var(--gold);
+        }
 
         .footer-copy {
             font-size: 0.8rem;
@@ -1318,15 +1334,14 @@
                     <div class="contact-detail-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
-                    <a href="mailto:conyegbado@palcareng.org" style="color: var(--slate-300); text-decoration:none;">conyegbado@palcareng.org
-                    </a>
+                    <span id="emailLink"></span>
                 </div>
 
                 <div class="contact-detail">
                     <div class="contact-detail-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                     </div>
-                    <a href="https://www.linkedin.com/in/charlesonyegbado/" target="_blank" rel="noopener" style="color: var(--slate-300); text-decoration:none;">linkedin.com/in/charlesonyegbado</a>
+                    <a href="https://www.linkedin.com/in/charlesonyegbado/" target="_blank" rel="noopener">Connect on LinkedIn</a>
                 </div>
 
                 <div class="contact-detail">
@@ -1406,6 +1421,20 @@
             message: 'entry.920163043'
         };
 
+        function populateProtectedLinks() {
+            const emailUser = 'conyegbado';
+            const emailDomain = 'palcareng.org';
+            const email = `${emailUser}@${emailDomain}`;
+
+            const emailTarget = document.getElementById('emailLink');
+            if (emailTarget) {
+                const emailAnchor = document.createElement('a');
+                emailAnchor.href = `mailto:${email}`;
+                emailAnchor.textContent = email;
+                emailTarget.appendChild(emailAnchor);
+            }
+        }
+
         async function postToGoogle(formUrl, fields) {
             const body = new URLSearchParams(fields).toString();
             try {
@@ -1415,7 +1444,7 @@
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body
                 });
-            } catch(e) {}
+            } catch (e) {}
         }
 
         const stars = document.querySelectorAll('.star-btn');
@@ -1426,9 +1455,11 @@
                 const val = parseInt(btn.dataset.val);
                 stars.forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= val));
             });
+
             btn.addEventListener('mouseout', () => {
                 stars.forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= selectedRating));
             });
+
             btn.addEventListener('click', () => {
                 selectedRating = parseInt(btn.dataset.val);
                 stars.forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= selectedRating));
@@ -1447,17 +1478,17 @@
             }
 
             await postToGoogle(RATING_FORM_URL, {
-                [RATING_FIELDS.name]:    name,
-                [RATING_FIELDS.org]:     org,
+                [RATING_FIELDS.name]: name,
+                [RATING_FIELDS.org]: org,
                 [RATING_FIELDS.context]: ctx,
-                [RATING_FIELDS.stars]:   selectedRating,
+                [RATING_FIELDS.stars]: selectedRating,
                 [RATING_FIELDS.message]: text
             });
 
             document.getElementById('ratingSuccess').style.display = 'block';
-            document.getElementById('reviewName').value   = '';
-            document.getElementById('reviewOrg').value    = '';
-            document.getElementById('reviewText').value   = '';
+            document.getElementById('reviewName').value = '';
+            document.getElementById('reviewOrg').value = '';
+            document.getElementById('reviewText').value = '';
             document.getElementById('reviewContext').value = '';
             stars.forEach(s => s.classList.remove('active'));
             selectedRating = 0;
@@ -1475,18 +1506,20 @@
             }
 
             await postToGoogle(CONTACT_FORM_URL, {
-                [CONTACT_FIELDS.name]:    name,
-                [CONTACT_FIELDS.email]:   email,
-                [CONTACT_FIELDS.type]:    type,
+                [CONTACT_FIELDS.name]: name,
+                [CONTACT_FIELDS.email]: email,
+                [CONTACT_FIELDS.type]: type,
                 [CONTACT_FIELDS.message]: msg
             });
 
             document.getElementById('contactSuccess').style.display = 'block';
-            document.getElementById('contactName').value    = '';
-            document.getElementById('contactEmail').value   = '';
-            document.getElementById('contactType').value    = '';
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactType').value = '';
             document.getElementById('contactMessage').value = '';
         }
+
+        document.addEventListener('DOMContentLoaded', populateProtectedLinks);
     </script>
 
 </body>
